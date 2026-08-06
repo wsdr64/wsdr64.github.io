@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘思源 · 作品集</title>
+<style>
+  :root {
+    --bg: #fafaf6;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #6b6b6b;
+    --accent: #b8956a;
+    --accent-light: #d4c5b2;
+    --border: #e8e4dd;
+    --border-light: #f0ede8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(184,149,106,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .label {
+    font-size: 13px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 strong { font-weight: 700; }
+  .hero .subtitle {
+    font-size: clamp(14px, 2vw, 17px);
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 480px;
+    position: relative;
+  }
+  .hero .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    font-size: 12px;
+    color: var(--accent-light);
+    letter-spacing: 2px;
+    animation: fadeInOut 2s ease-in-out infinite;
+  }
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── Section ── */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 32px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .section-header .num {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-header h2 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .section-header .line {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto;
+  }
+
+  /* ── Project Intro Card ── */
+  .project-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 140px;
+    background: var(--card);
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .project-intro:nth-child(even) { direction: rtl; }
+  .project-intro:nth-child(even) .project-info { direction: ltr; }
+  .project-intro .cover-img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .project-info {
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .project-info .tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .project-info h3 {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+  .project-info .award {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .project-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 28px;
+  }
+  .project-info .view-gallery {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 6px;
+    transition: all 0.3s;
+  }
+  .project-info .view-gallery:hover {
+    color: var(--accent);
+    border-bottom-color: var(--text);
+  }
+
+  /* ── Gallery Grid ── */
+  .gallery-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+  }
+  .gallery-section .gallery-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .gallery-section .gallery-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 60px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+  }
+  .gallery-grid img {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    background: var(--card);
+  }
+  .gallery-grid img:hover { opacity: 0.82; }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.94);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 94vw;
+    max-height: 94vh;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 36px;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    padding: 20px;
+    user-select: none;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+  }
+  .lightbox .nav:hover { color: #fff; }
+  .lightbox .nav.prev { left: 16px; }
+  .lightbox .nav.next { right: 16px; }
+  .lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 32px;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.2s;
+  }
+  .lightbox .close:hover { color: #fff; }
+  .lightbox .counter {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  /* ── Footer ── */
+  .portfolio-footer {
+    text-align: center;
+    padding: 80px 24px 60px;
+    border-top: 1px solid var(--border);
+  }
+  .portfolio-footer h3 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .portfolio-footer p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+  .portfolio-footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .portfolio-footer a:hover { text-decoration: underline; }
+
+  /* ── Back to top ── */
+  .back-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .back-top.visible { opacity: 1; pointer-events: auto; }
+  .back-top:hover { background: var(--text); color: #fff; border-color: var(--text); }
+
+  @media (max-width: 768px) {
+    .project-intro {
+      grid-template-columns: 1fr;
+      margin-bottom: 80px;
+    }
+    .project-intro:nth-child(even) { direction: ltr; }
+    .project-intro .cover-img { min-height: 280px; }
+    .project-info { padding: 36px 24px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .section { padding: 64px 20px; }
+    .section-header { margin-bottom: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="label">Portfolio</div>
+  <h1>刘思源<strong>作品集</strong></h1>
+  <p class="subtitle">家居产品设计 · 家具设计与工程 · 2026</p>
+  <div class="scroll-hint">↓ 向下浏览</div>
+</section>
+
+<!-- ═══════════ PROJECT 1: 智悦医阁 ═══════════ -->
+<div class="section-header" id="p1">
+  <div class="num">01</div>
+  <h2>智悦医阁</h2>
+  <div class="line"></div>
+</div>
+
+<div class="project-intro">
+  <img class="cover-img" src="images/p7.jpg" alt="智悦医阁" loading="lazy">
+  <div class="project-info">
+    <div class="tag">美生杯 · 优秀设计奖</div>
+    <h3>老年人智能医疗收纳柜</h3>
+    <div class="award">第一作者 · 2023 首届美生杯家居收纳创新设计大赛</div>
+    <p>聚焦银发群体的居家医疗体验。以"智能家居+健康养老"为核心理念，将 RFID 精准存药、语音提醒、分药器自动出药、网上问诊接入等功能集成于一体。外观采用倾斜面板适配老年人操作习惯，全语音交互降低使用门槛。</p>
+    <a class="view-gallery" href="#gallery-zyyg">查看完整方案 →</a>
+  </div>
+</div>
+
+<div class="gallery-section" id="gallery-zyyg">
+  <div class="gallery-title">方案详情</div>
+  <div class="gallery-subtitle">用户研究 · 外观设计 · 功能分区 · 材质配色 · 智能交互</div>
+  <div class="gallery-grid" id="gal-zyyg"></div>
+</div>
+
+<!-- ═══════════ PROJECT 2: 幻堡奇境 ═══════════ -->
+<div class="section-header" id="p2">
+  <div class="num">02</div>
+  <h2>幻堡奇境</h2>
+  <div class="line"></div>
+</div>
+
+<div class="project-intro">
+  <img class="cover-img" src="images/p2.jpg" alt="幻堡奇境" loading="lazy">
+  <div class="project-info">
+    <div class="tag">莫干山杯 · 概念组入围</div>
+    <h3>儿童分龄成长型智能家具</h3>
+    <div class="award">第一作者 · 2024 升华云峰莫干山杯</div>
+    <p>面向 996 家庭亲子陪伴缺失的社会洞察。以童话城堡为造型灵感，设计覆盖 3-6 岁、7-12 岁、13-18 岁三阶段的成长型儿童家具。集成 AI 试衣、学习状态监测、坐姿/睡眠监测等智能模块。</p>
+    <a class="view-gallery" href="#gallery-hbqj">查看完整方案 →</a>
+  </div>
+</div>
+
+<div class="gallery-section" id="gallery-hbqj">
+  <div class="gallery-title">方案详情</div>
+  <div class="gallery-subtitle">概念设计 · 功能详解 · 智能模块 · 三阶段成长方案</div>
+  <div class="gallery-grid" id="gal-hbqj"></div>
+</div>
+
+<!-- ═══════════ PROJECT 3: 成长乐园 ═══════════ -->
+<div class="section-header" id="p3">
+  <div class="num">03</div>
+  <h2>成长乐园</h2>
+  <div class="line"></div>
+</div>
+
+<div class="project-intro">
+  <img class="cover-img" src="images/p4.jpg" alt="成长乐园" loading="lazy">
+  <div class="project-info">
+    <div class="tag">莫干山杯 · 概念组入围</div>
+    <h3>儿童智能成长家具</h3>
+    <div class="award">2024 升华云峰莫干山杯 · 概念组</div>
+    <p>同样面向 996 家庭亲子陪伴问题，以"独立+陪伴"为设计主线。集成学习机辅助、温湿度调节、坐姿/专注时间/睡眠监测、心情晴雨表等功能模块，搭配洞洞板挂衣和睡前收纳设计，一板两用。</p>
+    <a class="view-gallery" href="#gallery-clyy">查看完整方案 →</a>
+  </div>
+</div>
+
+<div class="gallery-section" id="gallery-clyy">
+  <div class="gallery-title">方案详情</div>
+  <div class="gallery-subtitle">概念设计 · 功能系统 · 监测模块 · 收纳方案</div>
+  <div class="gallery-grid" id="gal-clyy"></div>
+</div>
+
+<!-- ═══════════ PROJECT 4: 曲韵 ═══════════ -->
+<div class="section-header" id="p4">
+  <div class="num">04</div>
+  <h2>曲韵</h2>
+  <div class="line"></div>
+</div>
+
+<div class="project-intro">
+  <img class="cover-img" src="images/p17.jpg" alt="曲韵" loading="lazy">
+  <div class="project-info">
+    <div class="tag">曲竹天下杯 · 参赛作品</div>
+    <h3>竹家居多功能座椅</h3>
+    <div class="award">首届"曲竹天下"杯竹家居产品创新设计大赛</div>
+    <p>以传统折扇"可展可合"为灵感来源，运用榫卯工艺将竹材与金属紧密结合。集置物、照明、无线充电、旋转手机支架于一体，在东方美学与现代功能之间寻找平衡，让座椅洋溢呼吸感与舒适感。</p>
+    <a class="view-gallery" href="#gallery-qy">查看完整方案 →</a>
+  </div>
+</div>
+
+<div class="gallery-section" id="gallery-qy">
+  <div class="gallery-title">方案详情</div>
+  <div class="gallery-subtitle">设计说明 · 材质选择 · 局部功能 & 结构</div>
+  <div class="gallery-grid" id="gal-qy"></div>
+</div>
+
+<!-- ═══════════ PROJECT 5: 说走就走 ═══════════ -->
+<div class="section-header" id="p5">
+  <div class="num">05</div>
+  <h2>说走就走</h2>
+  <div class="line"></div>
+</div>
+
+<div class="project-intro">
+  <img class="cover-img" src="images/p18.jpg" alt="说走就走" loading="lazy">
+  <div class="project-info">
+    <div class="tag">课程设计</div>
+    <h3>多功能行李箱 / 收纳柜</h3>
+    <div class="award">家具设计课程作品</div>
+    <p>针对行李箱长期闲置占空间的痛点，以绿色可持续设计为理念，通过可拆卸拉手与滑轨结构的模块化组合，使行李箱在酒店场景下变形为临时收纳柜和衣帽架。PC 塑料+烤漆金属材质，简约几何线条。</p>
+    <a class="view-gallery" href="#gallery-szjz">查看完整方案 →</a>
+  </div>
+</div>
+
+<div class="gallery-section" id="gallery-szjz">
+  <div class="gallery-title">方案详情</div>
+  <div class="gallery-subtitle">设计效果图 · 灵感来源 · 三视图 · 结构细节 · 材质说明</div>
+  <div class="gallery-grid" id="gal-szjz"></div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="portfolio-footer">
+  <h3>刘思源</h3>
+  <p>家居产品设计师 · 浙江农林大学 家具设计与工程 2026 届</p>
+  <p>📧 <a href="mailto:3439588522@qq.com">3439588522@qq.com</a> &nbsp;·&nbsp; 📱 18968091165</p>
+</footer>
+
+<!-- ═══════════ LIGHTBOX ═══════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="close" onclick="closeLightbox()">&times;</button>
+  <button class="nav prev" onclick="navigate(-1)">&#8249;</button>
+  <button class="nav next" onclick="navigate(1)">&#8250;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="counter" id="lightbox-counter"></div>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── Project page ranges ──
+const projects = {
+  'gal-zyyg':  { start: 7, end: 16 },   // 智悦医阁: pages 7-16
+  'gal-hbqj':  { start: 2, end: 3 },    // 幻堡奇境: pages 2-3
+  'gal-clyy':  { start: 4, end: 5 },    // 成长乐园: pages 4-5
+  'gal-qy':    { start: 17, end: 17 },  // 曲韵: page 17
+  'gal-szjz':  { start: 18, end: 20 },  // 说走就走: pages 18-20
+};
+
+// ── Populate galleries ──
+Object.entries(projects).forEach(([gridId, range]) => {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  for (let i = range.start; i <= range.end; i++) {
+    const img = document.createElement('img');
+    img.src = `images/p${i}.jpg`;
+    img.alt = `Page ${i}`;
+    img.loading = 'lazy';
+    img.onclick = (e) => openLightbox(img.src, gridId);
+    grid.appendChild(img);
+  }
+});
+
+// ── Lightbox ──
+let currentGallery = null;
+let currentIndex = 0;
+
+function getGalleryImages(gridId) {
+  const grid = document.getElementById(gridId);
+  return grid ? Array.from(grid.querySelectorAll('img')) : [];
+}
+
+function openLightbox(src, gridId) {
+  currentGallery = gridId;
+  const images = getGalleryImages(gridId);
+  currentIndex = images.findIndex(img => img.src === src);
+  updateLightboxImage();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightboxImage() {
+  const images = getGalleryImages(currentGallery);
+  if (currentIndex < 0 || currentIndex >= images.length) return;
+  document.getElementById('lightbox-img').src = images[currentIndex].src;
+  document.getElementById('lightbox-counter').textContent =
+    `${currentIndex + 1} / ${images.length}`;
+}
+
+function navigate(dir) {
+  const images = getGalleryImages(currentGallery);
+  currentIndex = (currentIndex + dir + images.length) % images.length;
+  updateLightboxImage();
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+  currentGallery = null;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navigate(-1);
+  if (e.key === 'ArrowRight') navigate(1);
+});
+
+// ── Back to top ──
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 600);
+});
+</script>
+
+</body>
+</html>
