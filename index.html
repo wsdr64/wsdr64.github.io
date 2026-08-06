@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刘思源 · 家居产品设计师</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.8;
+    color: #2d2d2d;
+    background: #fafaf8;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 80px 0 48px;
+  }
+  header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  header .role {
+    font-size: 16px;
+    color: #8b7355;
+    margin-bottom: 16px;
+  }
+  header .contact-row {
+    font-size: 13px;
+    color: #999;
+  }
+  header .contact-row span { margin: 0 8px; }
+
+  /* Section */
+  section { padding: 0 0 56px; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e8e4dd;
+    color: #333;
+  }
+
+  /* About */
+  .about p { margin-bottom: 14px; font-size: 15px; color: #444; }
+  .about .highlight { color: #8b7355; font-weight: 500; }
+
+  /* Skills tag */
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .skill-tag {
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: #f0ede8;
+    color: #6b5e4f;
+    border: 1px solid #e0dbd2;
+  }
+
+  /* Project card */
+  .project {
+    margin-bottom: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+  }
+  .project-header {
+    padding: 28px 28px 0;
+  }
+  .project-header h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: #222;
+  }
+  .project-header .meta {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 12px;
+  }
+  .project-header .desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .project-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0;
+    margin-top: 16px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .project-images img {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border-right: 1px solid #f5f5f5;
+  }
+  .project-images img:hover { opacity: 0.85; }
+  .project-images.single { grid-template-columns: 1fr; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 4px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  }
+
+  /* Internship */
+  .internship {
+    padding: 24px 28px;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 48px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+  }
+  .internship h3 { font-size: 16px; margin-bottom: 4px; }
+  .internship .meta { font-size: 13px; color: #999; margin-bottom: 10px; }
+  .internship p { font-size: 14px; color: #555; line-height: 1.8; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px 0 56px;
+    color: #aaa;
+    font-size: 13px;
+  }
+  footer a { color: #8b7355; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header { padding: 48px 0 32px; }
+    header h1 { font-size: 26px; }
+    .project-header { padding: 20px 16px 0; }
+    .project-images { grid-template-columns: 1fr; }
+    section { padding: 0 0 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <h1>刘思源</h1>
+  <p class="role">家居产品设计师</p>
+  <p class="contact-row">
+    杭州 · 全职<span>|</span>18968091165<span>|</span>3439588522@qq.com
+  </p>
+</header>
+
+<!-- About -->
+<section class="about">
+  <h2 class="section-title">关于我</h2>
+  <p>
+    我是浙江农林大学<span class="highlight">家具设计与工程</span>专业 2026 届毕业生。
+    简单说我的工作就是：<span class="highlight">用三维软件把想法变成看得见的东西，再考虑材料、结构、人机工学，让它能落地生产</span>。
+  </p>
+  <p>
+    工具链方面，Solidworks 和 AutoCAD 做参数化建模和工程图，3ds Max 加 V-Ray 出效果图，Photoshop 做后期，酷家乐做参数化模型库。
+    这一年越来越习惯把 AI 嵌入设计流程——前期用大语言模型做用户分析和竞品调研，概念阶段用 AI 图像生成快速跑方案草图，渲染后期用 AI 增强提效率。
+    我觉得会用 AI 的设计师和不用的，三五年后会是两种人。
+  </p>
+  <div class="skill-tags">
+    <span class="skill-tag">Solidworks</span>
+    <span class="skill-tag">AutoCAD</span>
+    <span class="skill-tag">3ds Max + V-Ray</span>
+    <span class="skill-tag">酷家乐</span>
+    <span class="skill-tag">Photoshop</span>
+    <span class="skill-tag">AI 辅助设计</span>
+    <span class="skill-tag">人机工程学</span>
+    <span class="skill-tag">参数化建模</span>
+  </div>
+</section>
+
+<!-- Internship -->
+<section>
+  <h2 class="section-title">实习经历</h2>
+  <div class="internship">
+    <h3>群和科技 · 酷家乐 Coohom（海外事业部）</h3>
+    <p class="meta">定制家具实施实习生 · 2025.06 — 2026.04</p>
+    <p>负责海外品牌参数化家具模型库建设。主导泰国 E-Link、北美 Standard E 和 Ocean Cabinetry 的模型库参数化建模，覆盖多品类柜体结构，从产品型录出发完成规则驱动的批量建模。这段经历让我真正理解了设计稿和生产线之间那条缝是怎么补上的。</p>
+  </div>
+</section>
+
+<!-- Projects -->
+<section>
+  <h2 class="section-title">项目 / 竞赛作品</h2>
+
+  <!-- 智悦医阁 -->
+  <div class="project">
+    <div class="project-header">
+      <h3>智悦医阁 · 老年人智能医疗收纳柜</h3>
+      <p class="meta">美生杯家居收纳创新设计大赛 · 优秀设计奖 · 第一作者</p>
+      <p class="desc">
+        聚焦银发群体的居家医疗体验。核心问题是老年人吃药管理——什么时候吃、吃多少、药放哪了。
+        设计集成了 RFID 药品精准定位、智能语音提醒、分药器自动出药、网上问诊接入。
+        外观上采用倾斜面板适配老年人操作习惯，配合夜间模式和全语音交互，体现"智能家居 + 健康养老"的跨域设计思维。
+      </p>
+    </div>
+    <div class="project-images">
+      <img src="blog_images/folio_p9.jpg" alt="智悦医阁 设计理念" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="blog_images/folio_p10.jpg" alt="智悦医阁 产品外观" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="blog_images/folio_p12.jpg" alt="智悦医阁 功能分区" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="blog_images/folio_p15.jpg" alt="智悦医阁 智能交互" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <!-- 幻堡奇境 -->
+  <div class="project">
+    <div class="project-header">
+      <h3>幻堡奇境 · 儿童分龄成长型智能家具</h3>
+      <p class="meta">莫干山杯生态家居设计大赛 · 概念组入围 · 第一作者</p>
+      <p class="desc">
+        面向 996 家庭亲子陪伴缺失的社会洞察。以童话城堡造型设计覆盖 3-18 岁三阶段的成长型儿童家具，
+        集成学习状态监测、坐姿提醒、睡眠监测、AI 试衣等智能模块，搭配可调节结构适配儿童身体发育。
+      </p>
+    </div>
+    <div class="project-images">
+      <img src="blog_images/folio_p2.jpg" alt="幻堡奇境 设计概览" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="blog_images/folio_p3.jpg" alt="幻堡奇境 功能详解" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <!-- 曲韵 -->
+  <div class="project">
+    <div class="project-header">
+      <h3>曲韵 · 竹家居多功能座椅</h3>
+      <p class="meta">曲竹天下杯竹家居产品创新设计大赛 参赛</p>
+      <p class="desc">
+        以传统折扇"可展可合"为灵感，运用榫卯工艺结合竹材与金属。
+        集置物、照明、无线充电、旋转手机支架于一体，兼顾功能与东方美学。
+      </p>
+    </div>
+    <div class="project-images single">
+      <img src="blog_images/folio_p17.jpg" alt="曲韵 竹家居座椅" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <!-- 说走就走 -->
+  <div class="project">
+    <div class="project-header">
+      <h3>说走就走 · 多功能行李箱 / 收纳柜</h3>
+      <p class="meta">课程设计</p>
+      <p class="desc">
+        针对行李箱长期闲置占空间的痛点，设计可变形为临时收纳柜和衣帽架的模块化行李箱。
+        可拆卸拉手 + 滑轨结构，PC 塑料 + 烤漆金属材质，践行绿色可持续设计理念。
+      </p>
+    </div>
+    <div class="project-images">
+      <img src="blog_images/folio_p19.jpg" alt="说走就走 设计概述" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="blog_images/folio_p20.jpg" alt="说走就走 结构细节" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section>
+  <h2 class="section-title">获奖与证书</h2>
+  <div style="font-size:14px;color:#555;line-height:2.2;">
+    <p>· "美生杯"家居收纳产品创新设计大赛 · 优秀设计奖</p>
+    <p>· "莫干山杯"生态家居设计大赛 · 概念组入围（2项）</p>
+    <p>· 大学英语四级证书（CET-4）</p>
+  </div>
+</section>
+
+<footer>
+  <p>📧 <a href="mailto:3439588522@qq.com">3439588522@qq.com</a> &nbsp;·&nbsp; 📱 18968091165</p>
+  <p style="margin-top:8px;">欢迎联系交流</p>
+</footer>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
